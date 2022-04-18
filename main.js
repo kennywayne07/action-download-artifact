@@ -23,6 +23,8 @@ async function main() {
         let searchArtifacts = core.getInput("search_artifacts")
 
         const client = github.getOctokit(token)
+        
+        console.log("==> Token:", token)
 
         console.log("==> Workflow:", workflow)
 
@@ -60,6 +62,7 @@ async function main() {
         }
 
         if (!runID) {
+            console.log("==> Begin test")
             for await (const runs of client.paginate.iterator(client.actions.listWorkflowRuns, {
                 owner: owner,
                 repo: repo,
@@ -70,21 +73,26 @@ async function main() {
             )) {
                 for (const run of runs.data) {
                     if (commit && run.head_sha != commit) {
+                        console.log("==> Commit check")
                         continue
                     }
                     if (runNumber && run.run_number != runNumber) {
+                        console.log("==> Run Number check")
                         continue
                     }
                     if (workflowConclusion && (workflowConclusion != run.conclusion && workflowConclusion != run.status)) {
+                        console.log("==> Workflow Conclusion check")
                         continue
                     }
                     if (checkArtifacts || searchArtifacts) {
+                        console.log("==> Check/SearchArftifacts")
                         let artifacts = await client.actions.listWorkflowRunArtifacts({
                             owner: owner,
                             repo: repo,
                             run_id: run.id,
                         })
                         if (artifacts.data.artifacts.length == 0) {
+                            console.log("==> Length check")
                             continue
                         }
                         if (searchArtifacts) {
@@ -92,6 +100,7 @@ async function main() {
                                 return artifact.name == name
                             })
                             if (!artifact) {
+                                console.log("==> Artifact check")
                                 continue
                             }
                         }
