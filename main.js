@@ -24,6 +24,8 @@ async function main() {
 
         const client = github.getOctokit(token)
         
+        console.log("==> Client:", core.info(JSON.stringify(client)))
+        
         console.log("==> Token:", token)
 
         console.log("==> Workflow:", workflow)
