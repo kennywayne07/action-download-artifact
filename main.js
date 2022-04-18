@@ -24,7 +24,11 @@ async function main() {
 
         const client = github.getOctokit(token)
         
-        console.log("==> Client:", core.info(JSON.stringify(client)))
+        //console.log("==> Client:", core.info(JSON.stringify(client)))
+        const {
+            data: { login },
+        } = await client.rest.users.getAuthenticated()
+        console.log("Hello, %s", login)
         
         console.log("==> Token:", token)
 
