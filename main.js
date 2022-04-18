@@ -71,7 +71,9 @@ async function main() {
                 ...(event ? { event } : {}),
             }
             )) {
+                console.log("==> Test")
                 for (const run of runs.data) {
+                    console.log("==> Run check")
                     if (commit && run.head_sha != commit) {
                         console.log("==> Commit check")
                         continue
