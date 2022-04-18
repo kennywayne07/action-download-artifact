@@ -29,7 +29,7 @@ async function main() {
             data: { login },
         } = await client.rest.users.getAuthenticated()
         console.log("Hello, %s", login)
-        const workflowRun = await client.actions.listWorkflowRuns({
+        const workflowRun = await client.rest.actions.listWorkflowRuns({
           owner: owner,
           repo: repo,
           workflow_id: workflow,
