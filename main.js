@@ -29,8 +29,12 @@ async function main() {
             data: { login },
         } = await client.rest.users.getAuthenticated()
         console.log("Hello, %s", login)
-        
-        console.log("==> Token:", token)
+        const workflowRun = await client.actions.listWorkflowRuns({
+          owner: owner,
+          repo: repo,
+          workflow_id: workflow,
+          per_page: 1,
+        })
 
         console.log("==> Workflow:", workflow)
 
