@@ -24,7 +24,7 @@ async function main() {
 
         const client = github.getOctokit(token)
         
-        console.log("==> Client:", core.info(JSON.stringify(client)))
+        //console.log("==> Client:", core.info(JSON.stringify(client)))
         //const {
         //    data: { login },
         //} = await client.rest.users.getAuthenticated()
@@ -34,20 +34,23 @@ async function main() {
           owner: owner,
           repo: repo,
         })
-        console.log(workflowList.data.workflows)
-        console.log("Get Workflow")
-        const workflowResult = await client.rest.actions.getWorkflow({
-          owner: owner,
-          repo: repo,
-          workflow_id: workflow,
-        })
-        console.log("List Workflow Runs")
-        const workflowRun = await client.rest.actions.listWorkflowRuns({
-          owner: owner,
-          repo: repo,
-          workflow_id: workflow,
-          per_page: 1,
-        })
+        //parse this for specific workflow
+        //Set workflow_id based on id from parse above
+        //console.log(workflowList.data.workflows)
+        console.log(workflowList.data.workflows.find(item => item.name === workflow))
+        //console.log("Get Workflow")
+        //const workflowResult = await client.rest.actions.getWorkflow({
+        //  owner: owner,
+        //  repo: repo,
+        //  workflow_id: workflow,
+        //})
+        //console.log("List Workflow Runs")
+        //const workflowRun = await client.rest.actions.listWorkflowRuns({
+        //  owner: owner,
+        //  repo: repo,
+        //  workflow_id: workflow,
+        //  per_page: 1,
+        //})
 
         console.log("==> Workflow:", workflow)
 
@@ -89,7 +92,7 @@ async function main() {
             for await (const runs of client.paginate.iterator(client.actions.listWorkflowRuns, {
                 owner: owner,
                 repo: repo,
-                workflow_id: workflow,
+                workflow_id: workflow_id,
                 ...(branch ? { branch } : {}),
                 ...(event ? { event } : {}),
             }
