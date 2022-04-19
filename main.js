@@ -34,11 +34,12 @@ async function main() {
           owner: owner,
           repo: repo,
         })
+        console.log(workflowList)
         console.log("Get Workflow")
         const workflowResult = await client.rest.actions.getWorkflow({
           owner: owner,
           repo: repo,
-          wofkflow_id: workflow,
+          workflow_id: workflow,
         })
         console.log("List Workflow Runs")
         const workflowRun = await client.rest.actions.listWorkflowRuns({
