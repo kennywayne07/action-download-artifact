@@ -101,7 +101,7 @@ async function main() {
                 //console.log("==> LessWorkflowRuns:" , core.info(JSON.stringify(runs.data.find(item => item.name === workflow))))
                 function sort_by_key(array, key)
                 {
-                  return array.sort(function(a, b)
+                  return array.sort(function(b, a)
                   {
                     var x = a[key]; var y = b[key];
                     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
