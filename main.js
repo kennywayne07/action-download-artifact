@@ -29,13 +29,14 @@ async function main() {
         //    data: { login },
         //} = await client.rest.users.getAuthenticated()
         //console.log("Hello, %s", login)
-        console.log("List Workflows")
+        //console.log("List Workflows")
         const workflowList = await client.rest.actions.listRepoWorkflows({
           owner: owner,
           repo: repo,
         })
         //console.log(workflowList.data.workflows)
         const workflow_id = workflowList.data.workflows.find(item => item.name === workflow).id
+        console.log("==> workflow_id", workflow_id)
         //console.log("Get Workflow")
         //const workflowResult = await client.rest.actions.getWorkflow({
         //  owner: owner,
