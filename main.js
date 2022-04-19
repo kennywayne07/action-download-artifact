@@ -34,10 +34,8 @@ async function main() {
           owner: owner,
           repo: repo,
         })
-        //parse this for specific workflow
-        //Set workflow_id based on id from parse above
         //console.log(workflowList.data.workflows)
-        console.log(workflowList.data.workflows.find(item => item.name === workflow))
+        const workflow_id = workflowList.data.workflows.find(item => item.name === workflow).id
         //console.log("Get Workflow")
         //const workflowResult = await client.rest.actions.getWorkflow({
         //  owner: owner,
