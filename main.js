@@ -97,6 +97,7 @@ async function main() {
             }
             )) {
                 console.log("==> Test")
+                console.log("==> WorkflowRuns:", core.info(JSON.stringify(runs.data)))
                 for (const run of runs.data) {
                     console.log("==> Run check")
                     if (commit && run.head_sha != commit) {
