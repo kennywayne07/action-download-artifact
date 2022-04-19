@@ -96,8 +96,8 @@ async function main() {
                 ...(event ? { event } : {}),
             }
             )) {
-                console.log("==> Test")
-                console.log("==> WorkflowRuns:", core.info(JSON.stringify(runs.data)))
+                //console.log("==> Test")
+                //console.log("==> WorkflowRuns:", core.info(JSON.stringify(runs.data)))
                 //console.log("==> LessWorkflowRuns:" , core.info(JSON.stringify(runs.data.find(item => item.name === workflow))))
                 function sort_by_key(array, key)
                 {
@@ -107,9 +107,9 @@ async function main() {
                     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
                   });
                 }
-                var testArray = sort_by_key(runs.data, 'run_number');
-                console.log("==> LessWorkflowRuns:" , core.info(JSON.stringify(testArray)))
-                for (const run of runs.data) {
+                var newRunsData = sort_by_key(runs.data, 'run_number');
+                //console.log("==> NewRunsData:" , core.info(JSON.stringify(newRunsData)))
+                for (const run of newRunsData) {
                     console.log("==> Run check")
                     if (commit && run.head_sha != commit) {
                         console.log("==> Commit check")
