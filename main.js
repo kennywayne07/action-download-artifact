@@ -25,10 +25,10 @@ async function main() {
         const client = github.getOctokit(token)
         
         console.log("==> Client:", core.info(JSON.stringify(client.rest.actions)))
-        const {
-            data: { login },
-        } = await client.rest.users.getAuthenticated()
-        console.log("Hello, %s", login)
+        //const {
+        //    data: { login },
+        //} = await client.rest.users.getAuthenticated()
+        //console.log("Hello, %s", login)
         console.log("Get Workflow")
         const workflowResult = await client.rest.actions.getWorkflow({
           owner: owner,
