@@ -34,7 +34,7 @@ async function main() {
           owner: owner,
           repo: repo,
         })
-        console.log(workflowList)
+        console.log(workflowList.data.workflows)
         console.log("Get Workflow")
         const workflowResult = await client.rest.actions.getWorkflow({
           owner: owner,
